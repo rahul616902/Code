@@ -1,0 +1,33 @@
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        
+        // k is modulos here to simplify the rotation in case if k>nums.size()
+        k = k % nums.size();
+
+        // step 1 : first reverse the whole array by using reverse function
+        reverse(nums.begin(), nums.end());
+
+        // step2: reverse the firse k elements from the beginning
+        reverse(nums.begin(), nums.begin()+k);  // here K is exclusive, that is why it will reverse from nums[0] to nums[0+k-1];
+
+        // step3: reverse the remaining element
+        reverse(nums.begin()+k, nums.end());  // now remaining element is reversed
+
+    }
+};
+
+
+
+
+
+// NOTE**********
+
+// in case of k= -ve we would have performed the same operation but would have shifted the array to left and modulo operations could have 
+//k=(k%n+n)%n
+
+
+// Time and space complexity ____
+Reversing the Entire Array: takes O(n) times
+Reversing the First k Elements: takes O(k) times
+Reversing the Remaining Elements: takes O(n-k) times
